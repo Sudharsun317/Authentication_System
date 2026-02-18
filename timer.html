@@ -66,6 +66,8 @@
 
             <h4 id="clock" class="mb-3"></h4>
 
+            <hr>
+
             <div id="timerDisplay" class="mb-3 fs-2 fw-bold">00:00:00</div>
 
             <div class="row justify-content-center">
@@ -85,59 +87,65 @@
                 <button class="btn btn-success" id="startTimer">Start</button>
                 <button class="btn btn-warning" id="pauseTimer">Pause</button>
                 <button class="btn btn-danger" id="resetTimer">Reset</button>
-                <div class="progress mt-3">
-                    <div id="timerProgress" class="progress-bar bg-success" style="width:0%"></div>
+            </div>
+            <div class="progress mt-3" style="height:20px;">
+                <div
+                    id="timerProgress"
+                    class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                    role="progressbar"
+                    style="width:0%">
+                    0%
                 </div>
-
-
             </div>
 
+
         </div>
 
-    </div>
-    <div class="row mt-4">
+    
+        <div class="row mt-4">
 
-    <!-- Timer Stats -->
-    <div class="col-md-4">
-        <div class="card shadow p-3 text-center">
-            <h6>Sessions Completed</h6>
-            <h3 id="sessionCount">0</h3>
+        <!-- Timer Stats -->
+        <div class="col-md-4">
+            <div class="card shadow p-3 text-center">
+                <h6>Sessions Completed</h6>
+                <h3 id="sessionCount">0</h3>
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-4">
-        <div class="card shadow p-3 text-center">
-            <h6>Total Focus Time</h6>
-            <h3 id="totalFocus">0 min</h3>
+        <div class="col-md-4">
+            <div class="card shadow p-3 text-center">
+                <h6>Total Focus Time</h6>
+                <h3 id="totalFocus">0 min</h3>
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-4">
-        <div class="card shadow p-3 text-center">
-            <h6>Status</h6>
-            <h3 id="timerStatus" class="text-success">Idle</h3>
+        <div class="col-md-4">
+            <div class="card shadow p-3 text-center">
+                <h6>Status</h6>
+                <h3 id="timerStatus" class="text-success">Idle</h3>
+            </div>
         </div>
-    </div>
 
-    </div>
-    <div class="card shadow p-3 mt-4 text-center">
+        </div>
+        <div class="card shadow p-3 mt-4 text-center">
 
-    <h5>Focus Tip 💡</h5>
+            <h5>Focus Tip 💡</h5>
 
-    <p id="focusTip">
-        Stay consistent. Small progress every day leads to big success.
-    </p>
-    <div class="card shadow p-3 mt-4">
+            <p id="focusTip">
+                Stay consistent. Small progress every day leads to big success.
+            </p>
+        </div>
+        <div class="card shadow p-3 mt-4">
 
-    <h5>Recent Sessions</h5>
+            <h5>Recent Sessions</h5>
 
-    <ul id="timerHistory" class="list-group mt-2">
-        <li class="list-group-item">No sessions yet</li>
-    </ul>
+            <ul id="timerHistory" class="list-group mt-2">
+                <li class="list-group-item">No sessions yet</li>
+            </ul>
 
-</div>
-
-
+        </div>
+        
+        
 </div>
 
 <script src="script.js"></script>
