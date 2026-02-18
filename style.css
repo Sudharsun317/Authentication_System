@@ -1,0 +1,221 @@
+/* Smooth animation for everything */
+
+body,
+.card,
+.sidebar,
+.navbar,
+.btn {
+    transition: all 0.35s ease;
+}
+.login-bg {
+    background :linear-gradient(135deg,#096f9b,#3d8197,#ecf5f8) 
+}
+
+/* Dark Mode */
+
+.dark {
+    background: #020617;
+    color: #e2e8f0;
+}
+
+body.dark {
+    background: #020617;
+    color: #e2e8f0;
+}
+
+body.dark .sidebar {
+    background: linear-gradient(180deg, #020617, #020617);
+    box-shadow: 0 0 20px rgba(59,130,246,0.4);
+}
+body.dark .card {
+    background: #0f172a;
+    border: 1px solid rgba(59,130,246,0.2);
+    box-shadow:
+        0 0 10px rgba(59,130,246,0.3),
+        0 0 20px rgba(59,130,246,0.2);
+    transition: 0.3s;
+}
+
+body.dark .card:hover {
+    box-shadow:
+        0 0 15px rgba(59,130,246,0.6),
+        0 0 30px rgba(59,130,246,0.4);
+    transform: translateY(-2px);
+}
+body.dark .btn-primary {
+    box-shadow: 0 0 10px rgba(59,130,246,0.6);
+}
+
+body.dark .btn-success {
+    box-shadow: 0 0 10px rgba(34,197,94,0.6);
+}
+
+body.dark .btn-danger {
+    box-shadow: 0 0 10px rgba(239,68,68,0.6);
+}
+body.dark #timerDisplay {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #38bdf8;
+    text-shadow:
+        0 0 5px #38bdf8,
+        0 0 10px #38bdf8,
+        0 0 20px #38bdf8;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from {
+        text-shadow:
+            0 0 5px #38bdf8,
+            0 0 10px #38bdf8;
+    }
+    to {
+        text-shadow:
+            0 0 10px #38bdf8,
+            0 0 25px #38bdf8,
+            0 0 40px #38bdf8;
+    }
+}
+body.dark .navbar {
+    background: #020617 !important;
+    box-shadow: 0 0 15px rgba(59,130,246,0.4);
+}
+body.dark .sidebar-profile img {
+    box-shadow:
+        0 0 10px rgba(59,130,246,0.7),
+        0 0 20px rgba(59,130,246,0.4);
+}
+body.dark::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.15), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(139,92,246,0.15), transparent 40%);
+    z-index: -1;
+    animation: moveBg 10s linear infinite alternate;
+}
+
+@keyframes moveBg {
+    from { transform: translate(0,0); }
+    to { transform: translate(-50px,-50px); }
+}
+
+
+.dark .card {
+    background: #0f172a;
+    color: #e2e8f0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.dark .navbar {
+    background: #0f172a !important;
+}
+
+.dark .sidebar {
+    background: linear-gradient(180deg, #020617, #000);
+}
+
+.dark a {
+    color: #cbd5e1;
+}
+
+.card {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+#themeBtn {
+    position: relative;
+    overflow: hidden;
+}
+
+#themeBtn::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(255,255,255,0.2);
+    transition: width 0.3s;
+}
+
+#themeBtn:hover::after {
+    width: 100%;
+}
+
+.dark .card {
+    border: 1px solid rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+}
+
+
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(180deg, #0f172a, #020617);
+    color: white;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;   /* pushes bottom to end */
+}
+
+.sidebar-bottom {
+    width: 100%;
+}
+
+/* Content area */
+
+.content {
+    margin-left: 240px;   /* IMPORTANT — pushes content away from sidebar */
+    padding: 30px;
+}
+
+/* Sidebar links */
+
+.sidebar a {
+    display: block;
+    padding: 12px 20px;
+    color: #cbd5e1;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #1e293b;
+    color: white;
+}
+.sidebar-profile img {
+    border: 3px solid rgba(255,255,255,0.3);
+}
+
+.sidebar-profile {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+
+/* Card improvement */
+
+.card {
+    border-radius: 12px;
+}
+
+
+
