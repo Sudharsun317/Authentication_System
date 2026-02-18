@@ -32,19 +32,6 @@ const users = [
 const loginForm = document.getElementById("loginForm");
 const loginMsg = document.getElementById("loginMsg");
 
-
-
-/* Protect dashboard pages */
-
-// const protectedPages = ["dashboard.html", "students.html", "taskmanager.html", "products.html", "timer.html", "oop.html"];
-
-// if (!session && protectedPages.some(p => window.location.pathname.includes(p))) {
-//     window.location.href = "dashboard.html";
-
-
-
-/* LOGIN */
-
 loginForm?.addEventListener("submit", (e) => {
 
     e.preventDefault();
@@ -90,9 +77,6 @@ loginForm?.addEventListener("submit", (e) => {
     }
 });
 
-
-/* LOGOUT */
-
 const logoutBtn = document.getElementById("logoutBtn");
 
 logoutBtn?.addEventListener("click", () => {
@@ -101,11 +85,6 @@ logoutBtn?.addEventListener("click", () => {
 
     window.location.href = "index.html";
 });
-
-
-
-
-/* ================= THEME ================= */
 
 const themeBtn = document.getElementById("themeBtn");
 
@@ -124,13 +103,7 @@ if (localStorage.getItem("theme") === "true") {
     document.body.classList.add("dark");
 }
 
-
-/* ================= SESSION USER ================= */
-
 const sessionUser = JSON.parse(localStorage.getItem("sessionUser"));
-
-
-/* ================= SIDEBAR PROFILE ================= */
 
 const sidebarUserName = document.getElementById("sidebarUserName");
 const sidebarRole = document.getElementById("sidebarRole");
@@ -151,9 +124,6 @@ if (sessionUser) {
     }
 }
 
-
-/* ================= DASHBOARD DATA ================= */
-
 const welcomeUser = document.getElementById("welcomeUser");
 
 if (welcomeUser && sessionUser) {
@@ -167,7 +137,6 @@ if (welcomeUser && sessionUser) {
 
 }
 
-
 if (welcomeUser && sessionUser) {
 
     welcomeUser.textContent =
@@ -175,18 +144,11 @@ if (welcomeUser && sessionUser) {
 
 }
 
-
-
-/* Total Students */
-
 const totalStudentsEl = document.getElementById("totalStudents");
 if (totalStudentsEl) {
     const students = JSON.parse(localStorage.getItem("students")) || [];
     totalStudentsEl.textContent = students.length;
 }
-
-
-/* Total Tasks */
 
 const totalTasksEl = document.getElementById("totalTasks");
 if (totalTasksEl) {
@@ -194,18 +156,11 @@ if (totalTasksEl) {
     totalTasksEl.textContent = tasks.length;
 }
 
-
-/* Date */
-
 const todayDate = document.getElementById("todayDate");
 
 if (todayDate) {
     todayDate.textContent = new Date().toLocaleDateString();
 }
-
-
-
-/* ================= STUDENTS ================= */
 
 let students = JSON.parse(localStorage.getItem("students"));
 if (!students) {
@@ -283,7 +238,6 @@ studentForm?.addEventListener("submit", (e) => {
 
 });
 
-
 function renderStudents() {
 
     const table = document.getElementById("studentTable");
@@ -317,15 +271,9 @@ function renderStudents() {
     }
 }
 
-
-/* Load default data on page open */
-
 if (document.getElementById("studentTable")) {
     renderStudents();
 }
-
-
-/* ================= TODO ================= */
 
 let tasks = JSON.parse(localStorage.getItem("tasks"));
 
@@ -394,7 +342,6 @@ if (!tasks) {
 if (!localStorage.getItem("tasks")) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
-
 
 const addTaskBtn = document.getElementById("addTask");
 const taskList = document.getElementById("taskList");
@@ -466,9 +413,6 @@ taskList?.addEventListener("click", e => {
 
 renderTasks();
 
-
-/* ================= PRODUCTS ================= */
-
 const products = Array.from({ length: 20 }, (_, i) => ({
     id: i + 1,
     name: `Product ${i + 1}`,
@@ -527,9 +471,6 @@ document.getElementById("rating")?.addEventListener("change", filterProducts);
 
 renderProducts(products);
 
-
-/* ================= TIMER ================= */
-
 const clock = document.getElementById("clock");
 
 if (clock) {
@@ -541,9 +482,6 @@ if (clock) {
 let timerInterval = null;
 let totalSeconds = 0;
 let initialSeconds = 0;
-
-
-/* START */
 
 document.getElementById("startTimer")?.addEventListener("click", () => {
 
@@ -585,18 +523,12 @@ document.getElementById("startTimer")?.addEventListener("click", () => {
 
 });
 
-
-/* PAUSE */
-
 document.getElementById("pauseTimer")?.addEventListener("click", () => {
 
     clearInterval(timerInterval);
     timerInterval = null;
 
 });
-
-
-/* RESET */
 
 document.getElementById("resetTimer")?.addEventListener("click", () => {
 
@@ -612,9 +544,6 @@ document.getElementById("resetTimer")?.addEventListener("click", () => {
 
 });
 
-
-/* DISPLAY */
-
 function updateTimerDisplay() {
 
     const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
@@ -624,9 +553,6 @@ function updateTimerDisplay() {
     document.getElementById("timerDisplay").textContent =
         `${h}:${m}:${s}`;
 }
-
-
-/* PROGRESS */
 
 function updateProgress(forceValue = null) {
 
@@ -647,20 +573,14 @@ function updateProgress(forceValue = null) {
     progressBar.textContent = Math.floor(percent) + "%";
 }
 
-
-
-/* ================= OOP ================= */
-
 const oopOutput = document.getElementById("oopOutput");
 
 if (oopOutput) {
 
-    /* Base Class */
-
     class User {
 
         constructor(name) {
-            this._name = name;   // Encapsulation
+            this._name = name;
         }
 
         get name() {
@@ -683,10 +603,7 @@ if (oopOutput) {
             return "Generic User";
         }
     }
-
-
-    /* Student Class */
-
+    
     class Student extends User {
 
         constructor(name, course) {
@@ -698,9 +615,6 @@ if (oopOutput) {
             return `Student enrolled in ${this.course}`;
         }
     }
-
-
-    /* Admin Class */
 
     class Admin extends User {
 
@@ -717,16 +631,10 @@ if (oopOutput) {
         }
     }
 
-
-    /* Objects */
-
     const users = [
         new Student("Sudharsun", "AI & DS"),
         new Admin("Max")
     ];
-
-
-    /* Polymorphism Example */
 
     let html = "";
 
@@ -754,4 +662,5 @@ if (oopOutput) {
 
     oopOutput.innerHTML = html;
 }
+
 
