@@ -1,4 +1,3 @@
-/* Smooth animation for everything */
 
 body,
 .card,
@@ -10,8 +9,6 @@ body,
 .login-bg {
     background :linear-gradient(135deg,#096f9b,#3d8197,#ecf5f8) 
 }
-
-/* Dark Mode */
 
 .dark {
     background: #020617;
@@ -101,7 +98,6 @@ body.dark::before {
     to { transform: translate(-50px,-50px); }
 }
 
-
 .dark .card {
     background: #0f172a;
     color: #e2e8f0;
@@ -135,7 +131,6 @@ body.dark::before {
     }
 }
 
-
 #themeBtn {
     position: relative;
     overflow: hidden;
@@ -161,7 +156,6 @@ body.dark::before {
     backdrop-filter: blur(10px);
 }
 
-
 .sidebar {
     width: 240px;
     height: 100vh;
@@ -174,21 +168,17 @@ body.dark::before {
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;   /* pushes bottom to end */
+    justify-content: space-between; 
 }
 
 .sidebar-bottom {
     width: 100%;
 }
 
-/* Content area */
-
 .content {
-    margin-left: 240px;   /* IMPORTANT — pushes content away from sidebar */
+    margin-left: 240px; 
     padding: 30px;
 }
-
-/* Sidebar links */
 
 .sidebar a {
     display: block;
@@ -210,12 +200,10 @@ body.dark::before {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-
-/* Card improvement */
-
 .card {
     border-radius: 12px;
 }
+
 
 
 
