@@ -540,6 +540,10 @@ if (clock) {
 
 let timerInterval = null;
 let totalSeconds = 0;
+let initialSeconds = 0;
+
+
+/* START */
 
 document.getElementById("startTimer")?.addEventListener("click", () => {
 
@@ -549,94 +553,98 @@ document.getElementById("startTimer")?.addEventListener("click", () => {
     const sec = Number(document.getElementById("sec").value) || 0;
 
     totalSeconds = min * 60 + sec;
+    initialSeconds = totalSeconds;
+
+    if (totalSeconds <= 0) return;
+
+    updateTimerDisplay();
+    updateProgress(0);
 
     timerInterval = setInterval(() => {
 
         if (totalSeconds <= 0) {
+
             clearInterval(timerInterval);
             timerInterval = null;
+
+            updateProgress(100);
+
             alert("Time Up!");
+
+            timerCompleted(Math.floor(initialSeconds / 60));
+
             return;
         }
 
         totalSeconds--;
 
-        const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
-        const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
-        const s = String(totalSeconds % 60).padStart(2, '0');
-
-        document.getElementById("timerDisplay").textContent =
-            `${h}:${m}:${s}`;
+        updateTimerDisplay();
+        updateProgress();
 
     }, 1000);
+
 });
-const progressBar = document.getElementById("timerProgress");
-const initialSeconds = totalSeconds;
 
-if (progressBar) {
 
-    const percent =
-        ((initialSeconds - totalSeconds) / initialSeconds) * 100;
+/* PAUSE */
 
-    progressBar.style.width = percent + "%";
+document.getElementById("pauseTimer")?.addEventListener("click", () => {
+
+    clearInterval(timerInterval);
+    timerInterval = null;
+
+});
+
+
+/* RESET */
+
+document.getElementById("resetTimer")?.addEventListener("click", () => {
+
+    clearInterval(timerInterval);
+    timerInterval = null;
+
+    totalSeconds = 0;
+    initialSeconds = 0;
+
+    document.getElementById("timerDisplay").textContent = "00:00:00";
+
+    updateProgress(0);
+
+});
+
+
+/* DISPLAY */
+
+function updateTimerDisplay() {
+
+    const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+    const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+    const s = String(totalSeconds % 60).padStart(2, '0');
+
+    document.getElementById("timerDisplay").textContent =
+        `${h}:${m}:${s}`;
 }
 
 
-document.getElementById("pauseTimer")?.addEventListener("click", () => {
-    clearInterval(timerInterval);
-    timerInterval = null;
-});
+/* PROGRESS */
 
-document.getElementById("resetTimer")?.addEventListener("click", () => {
-    clearInterval(timerInterval);
-    timerInterval = null;
-    document.getElementById("timerDisplay").textContent = "00:00:00";
-});
-let sessionCount = 0;
-let totalFocus = 0;
+function updateProgress(forceValue = null) {
 
-const sessionEl = document.getElementById("sessionCount");
-const focusEl = document.getElementById("totalFocus");
-const statusEl = document.getElementById("timerStatus");
-const historyEl = document.getElementById("timerHistory");
+    const progressBar = document.getElementById("timerProgress");
+    if (!progressBar || initialSeconds === 0) return;
 
-document.getElementById("startTimer")?.addEventListener("click", () => {
+    let percent;
 
-    if (statusEl) statusEl.textContent = "Running";
-
-});
-
-document.getElementById("pauseTimer")?.addEventListener("click", () => {
-
-    if (statusEl) statusEl.textContent = "Paused";
-
-});
-
-document.getElementById("resetTimer")?.addEventListener("click", () => {
-
-    if (statusEl) statusEl.textContent = "Idle";
-
-});
-
-function timerCompleted(minutes){
-
-    sessionCount++;
-    totalFocus += minutes;
-
-    if (sessionEl) sessionEl.textContent = sessionCount;
-    if (focusEl) focusEl.textContent = totalFocus + " min";
-
-    if (historyEl) {
-
-        const li = document.createElement("li");
-
-        li.className = "list-group-item";
-
-        li.textContent =
-            `Completed ${minutes} min session at ${new Date().toLocaleTimeString()}`;
-
-        historyEl.prepend(li);
+    if (forceValue !== null) {
+        percent = forceValue;
+    } else {
+        percent = ((initialSeconds - totalSeconds) / initialSeconds) * 100;
     }
+
+    percent = Math.min(100, Math.max(0, percent));
+
+    progressBar.style.width = percent + "%";
+    progressBar.textContent = Math.floor(percent) + "%";
 }
 
 
